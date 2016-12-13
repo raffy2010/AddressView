@@ -1,0 +1,56 @@
+<div>
+  <div class="address-content" ng-show="!addressItem.editing">
+    <p class="street">{{ addressItem.address.street }}</p>
+    <p class="sub-street">{{ addressItem.address.subStreet }}</p>
+    <p class="area">{{ addressItem.address.city }}-{{ addressItem.address.country }}</p>
+    <md-menu>
+      <md-button ng-click="addressItem.toggleMenu($mdOpenMenu, $event)">toggle</md-button>
+      <md-menu-content>
+        <md-menu-item>
+          <md-button ng-click="addressItem.toggleEdit()">edit</md-button>
+        </md-menu-item>
+        <md-divider></md-divider>
+        <md-menu-item>
+          <md-button>delete</md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
+  </div>
+  <div class="address-form" ng-show="!addressItem.editing">
+    <md-input-container>
+      <input type="text" />
+    </md-input-container>
+    <md-input-container>
+      <label for="">type</label>
+      <md-select ng-model="addressItem.address.type">
+        <md-option ng-repeat="type in addressSection.types" value="{{type.id}}">
+          {{type.title}}
+        </md-option>
+      </md-select>
+    </md-input-container>
+    <md-input-container>
+      <label for="">Street</label>
+      <input type="text" ng-model="addressItem.address.street">
+    </md-input-container>
+    <md-input-container>
+      <label for="">Sub Street</label>
+      <input type="text" ng-model="addressItem.address.subStreet">
+    </md-input-container>
+    <md-input-container>
+      <label for="">City</label>
+      <input type="text" ng-model="addressItem.address.city" />
+    </md-input-container>
+    <md-input-container>
+      <label for="">State</label>
+      <input type="text" ng-model="addressItem.address.state" />
+    </md-input-container>
+    <md-input-container>
+      <label for="">Country</label>
+      <md-select ng-model="addressItem.address.country">
+        <md-option ng-repeat="country in addressSection.countries" value="{{country.id}}">
+          {{type.title}}
+        </md-option>
+      </md-select>
+    </md-input-container>
+  </div>
+</div>

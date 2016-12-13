@@ -1,0 +1,10 @@
+import 'angular';
+import 'angular-route';
+import 'angular-messages';
+import 'angular-aria';
+import 'angular-animate';
+import 'angular-material';
+import 'angular-material-style';
+import 'font-awesome';
+import 'angular-clipboard';
+import 'angular-web-notification';
