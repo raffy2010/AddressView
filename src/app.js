@@ -2,8 +2,6 @@ import 'babel-polyfill';
 
 import _ from 'lodash';
 
-import 'angular-sanitize';
-
 import addressModule from './address';
 
 import ngRedux from 'ng-redux';
@@ -13,7 +11,8 @@ import reduxThunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 
 import address from './address/reducer';
-import app from './reducer';
+
+import '../style/app.scss';
 
 let defaultHost = process.env['API_HOST'],
     isDev = process.env['NODE_ENV'] == 'development';
@@ -24,7 +23,7 @@ let AddressView = angular.module('addressView', [
   'ngMessages',
   'ngRoute',
   'ngMaterial',
-  'ngSanitize',
+  //'ngSanitize',
   'angular-clipboard',
   'angular-web-notification',
   ngRedux,
@@ -49,8 +48,7 @@ let AddressView = angular.module('addressView', [
     [];
 
   $ngReduxProvider.createStoreWith({
-    address,
-    app
+    address
   }, middlewares, enhancers);
 
 

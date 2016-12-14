@@ -7,7 +7,7 @@ import {
   FETCH_ADDRESS,
   DELETE_ADDRESS,
   SEARCH_ADDRESS
-} from './actions';
+} from './action';
 
 import {
   stubPayload,
@@ -18,9 +18,7 @@ import {
 
 const addressList = handleActions({
   [CREATE_ADDRESS]: {
-    next: () => {
-
-    }
+    next: (state, {payload}) => [payload].concat(state)
   },
   [FETCH_ADDRESS]: {
     next: () => {
@@ -28,16 +26,25 @@ const addressList = handleActions({
     }
   },
   [UPDATE_ADDRESS]: {
-    next: () => {
+    next: (state, {payload}) => {
+      let id = payload.id;
 
+      return replaceCollectionById(state, id, payload);
     }
   },
   [DELETE_ADDRESS]: {
-    next: () => {
-
-    }
+    next: (state, {payload}) => dropCollectionById(state, payload)
   }
-}, []);
+}, [{
+  id: Date.now(),
+  type: 1,
+  street: 'Forest 301',
+  subStreet: 'suite 320',
+  city: 'Beijing',
+  state: 'Beijing',
+  code: '100000',
+  country: '2'
+}]);
 
 const searchKeyword = handleActions({
   [SEARCH_ADDRESS]: {

@@ -9,12 +9,14 @@
     "angular-hotkeys": "1.7.0",
     "angular-material": "1.0.9",
     "angular-messages": "1.5.6",
+    "angular-sanitize": "1.5.6",
     "angular-route": "1.5.5",
     "angular-web-notification": "0.0.83",
     "babel-polyfill": "6.8.0",
     "flux-standard-action": "0.6.1",
     "font-awesome": "4.6.3",
     "fuzzysearch": "1.0.3",
+    "lodash": "4.12.0",
     "ng-redux": "3.3.4-beta.0",
     "redux": "3.5.2",
     "redux-actions": "0.9.1",
@@ -47,7 +49,7 @@
     "url": "https://github.com/raffy2010/AddressView.git"
   },
   "author": "Raffy Li",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/raffy2010/AddressView/issues"
   },

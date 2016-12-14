@@ -6,7 +6,7 @@ const addressSelector = state => state.address;
 
 export const addressListSelector = createSelector(
   [addressSelector],
-  ({addressList, searchKeyword}) => {
+  ({addressList, searchKeyword}) => ({
     addressList,
     addressSearchList: addressList.filter(
       address => [
@@ -16,5 +16,5 @@ export const addressListSelector = createSelector(
         'street'
       ].some(key => fuzzysearch(searchKeyword, address))
     )
-  }
+  })
 )

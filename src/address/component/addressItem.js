@@ -3,16 +3,22 @@ import * as addressAction from '../action';
 export default function addressItem() {
   return {
     restrict: 'E',
-    controller: AddressSectionController,
-    controllerAs: 'addressSection',
+    controller: AddressItemController,
+    controllerAs: 'addressItem',
     bindToController: true,
-    template: require('./addressItem.html')
+    template: require('./addressItem.html'),
+    scope: {
+      address: '<'
+    }
   }
 }
 
-class AddressSectionController {
-  constructor($scope) {
-    let unbind = $ngRedux.connect({}, addressAction)(this);
+class AddressItemController {
+  constructor($scope, $ngRedux) {
+    let unbind = $ngRedux.connect(
+      () => ({}),
+      addressAction
+    )(this);
 
     $scope.$on('$destroy', () => {
       unbind();
@@ -27,23 +33,11 @@ class AddressSectionController {
     this.address.editing = !this.address.editing;
   }
 
-  create() {
-    this.updateAddress({
-
-    });
-  }
-
-  update() {
-    this.updateAddress(this.address.id, {
-
-    });
-  }
-
   delete() {
     this.deleteAddress(this.address.id);
   }
 
-  cancel() {
-    this.address.editing = false;
+  copy() {
+
   }
 }

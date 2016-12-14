@@ -1,4 +1,5 @@
 import * as addressAction from '../action';
+import {addressListSelector} from '../selector';
 
 export default function addressList() {
   return {
@@ -12,10 +13,34 @@ export default function addressList() {
 
 class AddressListController {
   constructor($scope, $ngRedux) {
-    let unbind = $ngRedux.connect(addressListSelector, addressAction)(this);
+    let unbind = $ngRedux.connect(
+      addressListSelector,
+      addressAction
+    )(this);
 
     $scope.$on('$destroy', () => {
       unbind();
     });
+
+    $scope.$watch('addressList', (newVal) => {
+      if (!this.addressList.length) {
+        this.addNewAddress();
+      }
+    });
+
+    this.newAddress = {}
+  }
+
+  addNewAddress() {
+    this.newAddress = {
+      type: 1,
+      street: '',
+      subStreet: '',
+      city: '',
+      state: '',
+      code: '',
+      country: '',
+      editing: true
+    };
   }
 }

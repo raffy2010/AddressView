@@ -1,0 +1,36 @@
+.address-list-card {
+  width: 380px;
+  position: relative;
+}
+
+md-list {
+  margin-bottom: 56px;
+}
+
+.create-address-btn {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+}
+
+.address-content {
+  padding: 16px 0;
+  position: relative;
+
+  p {
+    margin: 0 0 16px 0;
+  }
+}
+
+.address-btns {
+  position: absolute;
+  right: 0;
+  top: 6px;
+
+  .md-button {
+    min-width: 10px;
+    min-height: 28px;
+
+    line-height: 28px;
+  }
+}

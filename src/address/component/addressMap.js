@@ -8,10 +8,6 @@ export default function addressMap() {
   };
 }
 
-
 class AddressMapController {
-  constructor() {
-
-  }
 }
 

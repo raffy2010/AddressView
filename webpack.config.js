@@ -112,8 +112,7 @@ var config = module.exports = {
       'angular-aria':           ROOT_PATH + '/node_modules/angular-aria/angular-aria.min.js',
       'angular-material':       ROOT_PATH + '/node_modules/angular-material/angular-material.min.js',
       'angular-material-style': ROOT_PATH + '/node_modules/angular-material/angular-material.scss',
-      'font-awesome':           ROOT_PATH + '/node_modules/font-awesome/scss/font-awesome.scss',
-      'angular-sanitize':       ROOT_PATH + '/local_lib/textAngular-sanitize.js',
+      'font-awesome':           ROOT_PATH + '/node_modules/font-awesome/scss/font-awesome.scss'
     }
   },
 

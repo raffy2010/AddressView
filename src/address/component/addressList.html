@@ -1,11 +1,28 @@
-<div>
-  <md-input-container ng-show="addressList.addressList.length > 0">
-    <label for="">search address</label>
-    <input type="text" ng-modle="addressList.searchKeyword" />
-  </md-input-container>
-  <md-list>
-    <address-item address="address" ng-repeat="address in addressList.addressList">
-    </address-item>
-  </md-list>
-  <md-button ng-click=""></md-button>
-</div>
+<md-card class="address-list-card">
+  <md-content class="md-padding">
+    <md-input-container
+      class="md-block"
+      ng-show="addressList.addressList.length > 0"
+    >
+      <label for="">search address</label>
+      <input type="text" ng-modle="addressList.searchKeyword" />
+    </md-input-container>
+    <address-item-edit
+      ng-if="addressList.newAddress.editing"
+      address="addressList.newAddress">
+    </address-item-edit>
+    <md-list>
+      <address-item
+        address="address"
+        ng-repeat="address in addressList.addressList">
+      </address-item>
+    </md-list>
+    <md-button
+      class="md-fab create-address-btn"
+      ng-if="!addressList.newAddress.editing"
+      ng-click="addressList.addNewAddress()"
+    >
+      <i class="fa fa-plus"></i>
+    </md-button>
+  </md-content>
+</md-card>
