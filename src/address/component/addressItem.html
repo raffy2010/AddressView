@@ -1,23 +1,30 @@
-<div class="address-content" ng-if="!addressItem.address.editing">
-  <p>
-    <span class="street">{{ addressItem.address.street }}</span>
-    <span class="sub-street">{{ addressItem.address.subStreet }}</span>
-  </p>
-  <p class="type">{{ addressItem.address.type | typeTitle }}</p>
-  <p class="area">{{ addressItem.address.city }}&nbsp;{{ addressItem.address.state }}&nbsp;{{ addressItem.address.country | countryTitle }}</p>
-  <div class="address-btns" layout="row" layout-align="start start">
-    <md-button class="" ng-click="addressItem.copy()">
-      <i class="fa fa-copy"></i>
-    </md-button>
-    <md-button class="" ng-click="addressItem.toggleEdit()">
-      <i class="fa fa-pencil"></i>
-    </md-button>
-    <md-button class="" ng-click="addressItem.delete()">
-      <i class="fa fa-trash"></i>
-    </md-button>
-  </div>
-</div>
-<address-item-edit
-  ng-if="addressItem.address.editing"
-  address="addressItem.address">
-</address-item-edit>
+<md-card class="address-item-card">
+	<md-content class="md-padding">
+		<div ng-if="!addressItem.address.editing">
+			<p>
+				<span class="street">{{ addressItem.address.street }}</span>
+				<span class="sub-street">{{ addressItem.address.subStreet }}</span>
+			</p>
+			<p class="type">{{ addressItem.address.type | typeTitle }}</p>
+			<p class="area">{{ addressItem.address.city }}&nbsp;{{ addressItem.address.state }}&nbsp;{{ addressItem.address.country | countryTitle }}</p>
+			<div class="address-btns"
+				layout="row"
+				layout-align="start start"
+				>
+				<md-button class="" ng-click="addressItem.copy()">
+					<i class="fa fa-copy"></i>
+				</md-button>
+				<md-button class="" ng-click="addressItem.toggleEdit()">
+					<i class="fa fa-pencil"></i>
+				</md-button>
+				<md-button class="" ng-click="addressItem.delete()">
+					<i class="fa fa-trash"></i>
+				</md-button>
+			</div>
+		</div>
+		<address-item-edit
+			ng-if="addressItem.address.editing"
+			address="addressItem.address">
+		</address-item-edit>
+	</md-content>
+</md-card>

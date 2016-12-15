@@ -13,14 +13,16 @@
     <label for="">Sub Street</label>
     <input type="text" ng-model="addressItemEdit.address.subStreet">
   </md-input-container>
-  <md-input-container>
-    <label for="">City</label>
-    <input type="text" ng-model="addressItemEdit.address.city" />
-  </md-input-container>
-  <md-input-container>
-    <label for="">State</label>
-    <input type="text" ng-model="addressItemEdit.address.state" />
-  </md-input-container>
+  <div layout="row">
+    <md-input-container flex="50">
+      <label for="">City</label>
+      <input type="text" ng-model="addressItemEdit.address.city" />
+    </md-input-container>
+    <md-input-container flex="50">
+      <label for="">State</label>
+      <input type="text" ng-model="addressItemEdit.address.state" />
+    </md-input-container>
+  </div>
   <div>
     <md-select ng-model="addressItemEdit.address.country" placeholder="Country">
       <md-option ng-repeat="country in addressItemEdit.countries" value="{{country.id}}">

@@ -16,6 +16,7 @@ import {
 } from '../util';
 
 
+
 const addressList = handleActions({
   [CREATE_ADDRESS]: {
     next: (state, {payload}) => [payload].concat(state)
@@ -43,7 +44,11 @@ const addressList = handleActions({
   city: 'Beijing',
   state: 'Beijing',
   code: '100000',
-  country: '2'
+  country: '2',
+  latlng: {
+    lat: -34.397,
+    lng: 150.644
+  }
 }]);
 
 const searchKeyword = handleActions({

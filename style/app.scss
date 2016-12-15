@@ -1,6 +1,52 @@
+
+.container {
+  width: 1040px;
+  height: 600px;
+}
+
 .address-list-card {
-  width: 380px;
   position: relative;
+}
+
+.address-toolbar {
+	.address-search-wrap {
+		width: 70%;
+		margin: 8px 0 0 14px;
+
+		.md-errors-spacer {
+			display: none;
+		}
+
+		input {
+			padding: 0;
+
+			border-bottom: 1px solid rgba(#fff, 0.3);
+
+			color: rgba(#fff, 0.7);
+			font-size: 18px;
+		}
+
+		::-webkit-input-placeholder {
+			color: rgba(#fff, 0.7);
+		}
+
+		&.md-input-focused {
+			input {
+				border-bottom-color: #fff;
+				color: rgba(#fff, 0.8);
+			}
+
+			::-webkit-input-placeholder {
+				color: rgba(#fff, 0.8);
+			}
+		}
+	}
+}
+
+address-list {
+  height: 600px;
+
+  overflow: scroll;
 }
 
 md-list {
@@ -9,22 +55,28 @@ md-list {
 
 .create-address-btn {
   position: absolute;
-  bottom: 8px;
+  bottom: -34px;
   right: 8px;
 }
 
-.address-content {
-  padding: 16px 0;
+.address-item-card {
   position: relative;
 
   p {
     margin: 0 0 16px 0;
   }
+
+  &:hover {
+    .address-btns {
+      display: flex;
+    }
+  }
 }
 
 .address-btns {
+  display: none;
   position: absolute;
-  right: 0;
+  right: 6px;
   top: 6px;
 
   .md-button {
@@ -34,3 +86,25 @@ md-list {
     line-height: 28px;
   }
 }
+
+/*
+  override google autocomplet style
+*/
+.pac-container {
+  .pac-item {
+    height: 48px;
+    padding: 0 16px;
+
+    line-height: 48px;
+
+    .pac-icon {
+      display: none;
+    }
+  }
+
+  &:after {
+    display: none;
+  }
+}
+
+

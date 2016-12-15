@@ -22,7 +22,7 @@ class AddressListController {
       unbind();
     });
 
-    $scope.$watch('addressList', (newVal) => {
+    $scope.$watch('addressList.addressList', (newVal) => {
       if (!this.addressList.length) {
         this.addNewAddress();
       }

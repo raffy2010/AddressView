@@ -7,7 +7,7 @@ const addressComponent = {
   postal_code: 'postalCode'
 };
 
-export default function addressAutocomplete() {
+export default function addressAutocomplete($rootScope) {
   var placeSearch, autocomplete;
 
   function linkMap(scope, element, attr) {
@@ -24,15 +24,25 @@ export default function addressAutocomplete() {
 			// Get the place details from the autocomplete object.
 			var place = autocomplete.getPlace();
 
-			for (var i = 0; i < place.address_components.length; i++) {
-				var addressType = place.address_components[i].types[0];
-				if (addressComponent[addressType]) {
-					var val = place.address_components[i][addressComponent[addressType]];
-					scope.addressAutocomplete.address[addressComponent[addressType]] = val;
-				}
-			}
+      place.address_components.filter((address) => {
+				let addressType = address.types[0];
 
-			scope.$digest();
+        return addressComponent[addressType];
+      }).forEach((address) => {
+        let addressType = address.types[0],
+            val = address.long_name;
+
+        scope.addressAutocomplete.address[addressComponent[addressType]] = val;
+      });
+
+      let {lng, lat} = place.geometry.location
+
+      scope.addressAutocomplete.address.latlng = {
+        lat: lat(),
+        lng: lng()
+      };
+
+      $rootScope.$digest();
 		});
 
     scope.$on('$destroy', () => {

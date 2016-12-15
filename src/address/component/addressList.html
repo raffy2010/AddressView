@@ -1,28 +1,36 @@
-<md-card class="address-list-card">
-  <md-content class="md-padding">
-    <md-input-container
-      class="md-block"
-      ng-show="addressList.addressList.length > 0"
-    >
-      <label for="">search address</label>
-      <input type="text" ng-modle="addressList.searchKeyword" />
-    </md-input-container>
-    <address-item-edit
-      ng-if="addressList.newAddress.editing"
-      address="addressList.newAddress">
-    </address-item-edit>
-    <md-list>
-      <address-item
-        address="address"
-        ng-repeat="address in addressList.addressList">
-      </address-item>
-    </md-list>
-    <md-button
-      class="md-fab create-address-btn"
-      ng-if="!addressList.newAddress.editing"
-      ng-click="addressList.addNewAddress()"
-    >
-      <i class="fa fa-plus"></i>
-    </md-button>
-  </md-content>
-</md-card>
+<md-toolbar class="md-tall md-primary address-toolbar md-whiteframe-2dp">
+	<h2 class="md-toolbar-tools">
+		<span>Address List</span>
+	</h2>
+	<md-input-container
+		md-no-float
+		class="address-search-wrap"
+		ng-show="addressList.addressList.length > 0">
+		<input
+			type="text"
+			ng-modle="addressList.searchKeyword"
+			placeholder="search your address" />
+	</md-input-container>
+	<md-button
+		class="md-fab create-address-btn"
+		ng-if="!addressList.newAddress.editing"
+		ng-click="addressList.addNewAddress()"
+		>
+		<i class="fa fa-plus"></i>
+	</md-button>
+</md-toolbar>
+<md-content
+  class="md-padding"
+  ng-if="addressList.newAddress.editing">
+  <address-item-edit
+    address="addressList.newAddress">
+  </address-item-edit>
+</md-content>
+<md-list>
+	<address-item
+		address="address"
+		ng-repeat="address in addressList.addressList">
+	</address-item>
+</md-list>
+
+
