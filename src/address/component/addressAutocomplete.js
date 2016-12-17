@@ -1,7 +1,12 @@
-const addressComponent = {
-  street_number: 'subStreet',
-  route: 'street',
-  locality: 'city',
+const streetComponent = [
+  'premise',
+  'street_number',
+  'route',
+  'sublocality_level_1'
+];
+
+const areaComponent = {
+  locality: ['city'],
   administrative_area_level_1: 'state',
   country: 'country',
   postal_code: 'postalCode'
@@ -22,18 +27,27 @@ export default function addressAutocomplete($rootScope) {
     // fields in the form.
     autocomplete.addListener('place_changed', () => {
 			// Get the place details from the autocomplete object.
-			var place = autocomplete.getPlace();
+			let place = autocomplete.getPlace(),
+          street = [];
 
-      place.address_components.filter((address) => {
-				let addressType = address.types[0];
+      place.address_components.forEach((address) => {
+				let addressType = address.types[0],
+            targetField = areaComponent[addressType],
+            val;
 
-        return addressComponent[addressType];
-      }).forEach((address) => {
-        let addressType = address.types[0],
-            val = address.long_name;
+        if (targetField) {
+          val = address.short_name;
 
-        scope.addressAutocomplete.address[addressComponent[addressType]] = val;
+          scope.addressAutocomplete.address[targetField] = val;
+        }
+
+        if (streetComponent.indexOf(addressType) > -1) {
+          street.push(address.short_name);
+        }
       });
+
+      scope.addressAutocomplete.address.formatAddress = place.formatted_address;
+      scope.addressAutocomplete.address.street = street.join(' ');
 
       let {lng, lat} = place.geometry.location
 

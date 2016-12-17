@@ -16,7 +16,6 @@ import {
 } from '../util';
 
 
-
 const addressList = handleActions({
   [CREATE_ADDRESS]: {
     next: (state, {payload}) => [payload].concat(state)
@@ -37,27 +36,40 @@ const addressList = handleActions({
     next: (state, {payload}) => dropCollectionById(state, payload)
   }
 }, [{
-  id: Date.now(),
+  id: 1,
   type: 1,
-  street: 'Forest 301',
-  subStreet: 'suite 320',
+  street: '301 Forest Ave',
+  subStreet: '',
   city: 'Beijing',
   state: 'Beijing',
-  code: '100000',
-  country: '2',
+  postalCode: '100000',
+  country: 'CN',
+  formatAddress: '301 Forest Ave',
   latlng: {
     lat: -34.397,
     lng: 150.644
   }
-}]);
+}, {
+  id: 2,
+  type: 1,
+  street: 'Fu An Xi Lu',
+  subStreet: '',
+  city: 'Beijing',
+  state: 'Beijing',
+  postalCode: '100000',
+  country: 'CN',
+  formatAddress: 'fu an xi lu',
+  latlng: {
+    lat: -34.397,
+    lng: 150.644
+  }
+} ]);
 
 const searchKeyword = handleActions({
   [SEARCH_ADDRESS]: {
-    next: () => {
-
-    }
+    next: (_, {payload}) => payload
   }
-}, '')
+}, '');
 
 export default combineReducers({
   addressList,

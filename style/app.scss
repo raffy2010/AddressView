@@ -1,16 +1,62 @@
-
 .container {
   width: 1040px;
   height: 600px;
 }
 
-.address-list-card {
-  position: relative;
-}
-
 .address-toolbar {
+  h2, .address-search-wrap {
+    transition: all 0.3s;
+  }
+
+  &.short {
+    height: 64px;
+    min-height: 64px;
+
+    h2, .address-search-wrap {
+      display: none;
+    }
+  }
+
+  &.short-add {
+    transition: all 0.3s;
+
+    h2, .address-search-wrap {
+      display: flex;
+      opacity: 1;
+    }
+
+    &.short-add-active {
+      height: 64px;
+      min-height: 64px;
+
+      h2, .address-search-wrap {
+        opacity: 0;
+      }
+    }
+  }
+
+  &.short-remove {
+    transition: all 0.3s;
+    height: 64px;
+    min-height: 64px;
+
+    h2, .address-search-wrap {
+      display: flex;
+      opacity: 0;
+    }
+
+    &.short-remove-active {
+      height: 128px;
+      min-height: 128px;
+
+      h2, .address-search-wrap {
+        opacity: 1;
+      }
+    }
+  }
+
 	.address-search-wrap {
-		width: 70%;
+		width: 264px;
 		margin: 8px 0 0 14px;
 
 		.md-errors-spacer {
@@ -20,6 +66,8 @@
 		input {
 			padding: 0;
 
+      transition: all 0.3s;
+
 			border-bottom: 1px solid rgba(#fff, 0.3);
 
 			color: rgba(#fff, 0.7);
@@ -28,6 +76,8 @@
 
 		::-webkit-input-placeholder {
 			color: rgba(#fff, 0.7);
+
+      transition: all 0.3s;
 		}
 
 		&.md-input-focused {
@@ -57,13 +107,127 @@ md-list {
   position: absolute;
   bottom: -34px;
   right: 8px;
+
+  transition: all 0.1s ease;
+
+  &.cancel {
+    transform: rotate(45deg);
+    background-color: white !important;
+    color: rgb(255,64,129) !important;
+  }
 }
 
+.create-address-wrap {
+  position: absolute;
+  z-index: 1;
+
+  transition: all 0.3s;
+
+  &.ng-enter {
+    opacity: 0;
+    height: 0px;
+
+    &.ng-enter-active {
+      opacity: 1;
+      height: 522px;
+    }
+  }
+
+  &.ng-leave {
+    opacity: 1;
+    height: 522px;
+
+    &.ng-leave-active {
+      opacity: 0;
+      height: 0px;
+    }
+  }
+}
+
+
 .address-item-card {
+  height: 121px;
   position: relative;
 
-  p {
+  transition: all 0.3s;
+
+  md-content {
+    height: 100%;
+  }
+
+  &.editing {
+    height: 536px;
+
+    .address-btns {
+      display: none;
+    }
+  }
+
+  &.editing-add {
+    height: 120px;
+
+    .address-btns {
+      display: none !important;
+    }
+
+    &.editing-add-active {
+      height: 536px;
+    }
+  }
+
+  &.editing-remove {
+    height: 536px;
+
+    .address-btns {
+      display: none !important;
+    }
+
+    &.editing-remove-active {
+      height: 120px;
+    }
+  }
+
+  .type {
     margin: 0 0 16px 0;
+  }
+
+  .street {
+    margin: 0;
+
+    font-size: 14px;
+  }
+
+  .area {
+    margin: 8px 0 0 0;
+
+    font-size: 14px;
+  }
+
+  .type-flag {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    margin-right: 16px;
+
+    line-height: 32px;
+    border-radius: 50%;
+
+    text-align: center;
+
+    &.address {
+      background-color: rgb(255,64,129);
+      color: #fff;
+    }
+
+    &.mailing {
+      background-color: rgb(63,81,181);
+      color: #fff;
+    }
+
+    &.other {
+      background-color: #eee;
+      color: #000;
+    }
   }
 
   &:hover {
@@ -71,19 +235,74 @@ md-list {
       display: flex;
     }
   }
+
+  .address-form {
+    //height: 484px;
+  }
+
+  .address-content {
+    width: 100%;
+    height: 89px;
+  }
+
+  .address-item-edit,
+  .address-content {
+    &.ng-enter {
+      position: absolute;
+
+      opacity: 0;
+
+      &.ng-enter-active {
+        opacity: 1;
+      }
+    }
+
+    &.ng-leave {
+      position: absolute;
+
+      opacity: 1;
+
+      &.ng-leave-active {
+        opacity: 0;
+      }
+    }
+  }
+
+  .address-item-edit {
+    width: 316px;
+
+    transition: all 0.3s;
+  }
+
+  .address-content {
+    transition: all 0.3s;
+  }
 }
 
 .address-btns {
   display: none;
   position: absolute;
-  right: 6px;
-  top: 6px;
+  right: 0;
+  top: 12px;
 
   .md-button {
     min-width: 10px;
     min-height: 28px;
+    margin-left: 0;
 
     line-height: 28px;
+  }
+}
+
+.address-form {
+  .type-control {
+    padding-bottom: 18px;
+  }
+
+  .postalcode-control,
+  .state-control,
+  .city-control {
+    margin: 0;
   }
 }
 

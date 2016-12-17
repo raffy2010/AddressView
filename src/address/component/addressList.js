@@ -29,6 +29,15 @@ class AddressListController {
     });
 
     this.newAddress = {}
+    this.searchKeyword = '';
+  }
+
+  toggleCreate() {
+    if (this.newAddress.editing) {
+      this.newAddress.editing = false;
+    } else {
+      this.addNewAddress();
+    }
   }
 
   addNewAddress() {

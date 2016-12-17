@@ -14,7 +14,7 @@ export default function addressItem() {
 }
 
 class AddressItemController {
-  constructor($scope, $ngRedux) {
+  constructor($scope, $ngRedux, clipboard) {
     let unbind = $ngRedux.connect(
       () => ({}),
       addressAction
@@ -23,6 +23,8 @@ class AddressItemController {
     $scope.$on('$destroy', () => {
       unbind();
     });
+
+    this.clipboard = clipboard;
   }
 
   toggleMenu($mdOpenMenu, ev) {
@@ -38,6 +40,6 @@ class AddressItemController {
   }
 
   copy() {
-
+    this.clipboard.copyText(this.address.formatAddress);
   }
 }

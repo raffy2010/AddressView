@@ -1,5 +1,10 @@
 import * as addressAction from '../action';
 
+import {
+  countryList,
+  addressTypes
+} from '../config'
+
 export default function addressItemEdit() {
   return {
     restrict: 'E',
@@ -13,8 +18,6 @@ export default function addressItemEdit() {
   }
 }
 
-
-
 class AddressItemEditController {
   constructor($scope, $ngRedux) {
     let unbind = $ngRedux.connect(
@@ -26,24 +29,8 @@ class AddressItemEditController {
       unbind();
     });
 
-    this.types = [{
-      id: 1,
-      title: 'Mailing'
-    }, {
-      id: 2,
-      title: 'Address'
-    }, {
-      id: 3,
-      title: 'Other'
-    }],
-
-    this.countries = [{
-      id: 1,
-      title: 'America'
-    }, {
-      id: 2,
-      title: 'China'
-    }]
+    this.countryList = countryList;
+    this.addressTypes = addressTypes;
   }
 
   submit() {
