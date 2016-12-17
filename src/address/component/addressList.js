@@ -22,12 +22,6 @@ class AddressListController {
       unbind();
     });
 
-    $scope.$watch('addressList.addressList', (newVal) => {
-      if (!this.addressList.length) {
-        this.addNewAddress();
-      }
-    });
-
     this.newAddress = {}
     this.searchKeyword = '';
   }
@@ -47,8 +41,8 @@ class AddressListController {
       subStreet: '',
       city: '',
       state: '',
-      code: '',
       country: '',
+      postalCode: '',
       editing: true
     };
   }

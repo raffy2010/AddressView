@@ -96,11 +96,21 @@
 address-list {
   height: 600px;
 
-  overflow: scroll;
+  overflow: hidden;
 }
 
-md-list {
-  margin-bottom: 56px;
+.address-list-scroll {
+  height: 462px;
+
+	overflow: scroll;
+}
+
+.empty-tip {
+	height: 462px;
+
+  line-height: 1.4;
+
+  text-align: center;
 }
 
 .create-address-btn {
@@ -146,7 +156,7 @@ md-list {
 
 
 .address-item-card {
-  height: 121px;
+  height: 120px;
   position: relative;
 
   transition: all 0.3s;

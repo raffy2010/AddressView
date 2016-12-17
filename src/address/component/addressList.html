@@ -29,11 +29,16 @@
     address="addressList.newAddress">
   </address-item-edit>
 </md-content>
-<md-list>
-	<address-item
-		address="address"
-		ng-repeat="address in addressList.addressList | search: addressList.searchKeyword">
-	</address-item>
+<md-list class="address-list-scroll" ng-show="addressList.addressList.length">
+  <address-item
+    address="address"
+    ng-repeat="address in addressList.addressList | search: addressList.searchKeyword">
+  </address-item>
 </md-list>
-
-
+<div
+  class="empty-tip"
+  layout="row"
+  layout-align="center center"
+  ng-show="!addressList.addressList.length">
+  <span>empty now<br>click [ + ] button to add some addresses<span>
+</div>

@@ -1,5 +1,7 @@
 import * as addressAction from '../action';
 
+import {countryList} from '../config';
+
 export default function addressItem() {
   return {
     restrict: 'E',
@@ -10,6 +12,17 @@ export default function addressItem() {
     scope: {
       address: '<'
     }
+  }
+}
+
+
+function countryName(countryCode) {
+  let country = countryList.filter(
+    country => country.code == countryCode
+  );
+
+  if (country.length) {
+    return country[0].name;
   }
 }
 
@@ -25,14 +38,34 @@ class AddressItemController {
     });
 
     this.clipboard = clipboard;
+
+    $scope.$watch('addressItem.address', () => {
+      this.streetContent = this.format(['street', 'subStreet']);
+      this.areaContent = this.format(['city', 'state', 'postalCode', 'country'])
+    }, true);
+
+    this.editingAddress = {
+      editing: false
+    };
+  }
+
+  format(items, spliter = ' ') {
+    return items
+      .map(item => item === 'country' ?
+        countryName(this.address[item]) :
+        this.address[item]
+      )
+      .filter(item => item !== '')
+      .join(spliter);
   }
 
   toggleMenu($mdOpenMenu, ev) {
     $mdOpenMenu(ev);
   }
 
-  toggleEdit() {
-    this.address.editing = !this.address.editing;
+  edit() {
+    angular.copy(this.address, this.editingAddress);
+    this.editingAddress.editing = true;
   }
 
   delete() {
@@ -40,6 +73,13 @@ class AddressItemController {
   }
 
   copy() {
-    this.clipboard.copyText(this.address.formatAddress);
+    this.clipboard.copyText(this.format([
+      'street',
+      'subStreet',
+      'city',
+      'state',
+      'postalCode',
+      'country'
+    ], ', '));
   }
 }

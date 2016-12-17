@@ -1,32 +1,32 @@
 <md-card
   class="address-item-card"
-  ng-class="{'editing': addressItem.address.editing}">
+  ng-class="{'editing': addressItem.editingAddress.editing}">
 	<md-content class="md-padding">
-		<div class="address-content" ng-if="!addressItem.address.editing">
+		<div class="address-content" ng-if="!addressItem.editingAddress.editing">
       <p class="type">
         <span ng-class="addressItem.address.type | typeTitle | lowercase" class="type-flag">{{ addressItem.address.type | typeTitle | firstLetter }}</span>{{ addressItem.address.type | typeTitle }}
       </p>
-			<p class="street">{{ addressItem.address.street }}&nbsp;{{ addressItem.address.subStreet }}</p>
-			<p class="area">{{ addressItem.address.city }}&nbsp;{{ addressItem.address.state }}&nbsp;{{ addressItem.address.country | countryTitle }}</p>
+      <p class="street">{{ addressItem.streetContent }}</p>
+			<p class="area">{{ addressItem.areaContent }}</p>
 			<div class="address-btns"
 				layout="row"
 				layout-align="start start"
 				>
-				<md-button class="" ng-click="addressItem.copy()" aria-label="copy address">
+				<md-button ng-click="addressItem.copy()" aria-label="copy address">
 					<i class="fa fa-copy"></i>
 				</md-button>
-				<md-button class="" ng-click="addressItem.toggleEdit()" aria-label="edit address">
+				<md-button ng-click="addressItem.edit()" aria-label="edit address">
 					<i class="fa fa-pencil"></i>
 				</md-button>
-				<md-button class="" ng-click="addressItem.delete()" aria-label="delete address">
+				<md-button ng-click="addressItem.delete()" aria-label="delete address">
 					<i class="fa fa-trash"></i>
 				</md-button>
 			</div>
 		</div>
 		<address-item-edit
       class="address-item-edit"
-			ng-if="addressItem.address.editing"
-			address="addressItem.address">
+			ng-if="addressItem.editingAddress.editing"
+			address="addressItem.editingAddress">
 		</address-item-edit>
 	</md-content>
 </md-card>

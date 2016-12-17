@@ -8,10 +8,7 @@ import addressMap from './component/addressMap';
 import addressAutocomplete from './component/addressAutocomplete';
 import addressServiceModule from './service';
 
-import {
-  countryList,
-  addressTypes
-} from './config';
+import {addressTypes} from './config';
 
 export default angular.module('addressView.address', [
   'ngRoute',
@@ -23,15 +20,6 @@ export default angular.module('addressView.address', [
     .when('/address', {
       template: '<address-section></address-section>'
     })
-})
-.filter('countryTitle', () => {
-  return countryCode => {
-    let country = countryList.filter(country => country.code == countryCode);
-
-    if (country.length) {
-      return country[0].name;
-    }
-  };
 })
 .filter('typeTitle', () => {
   return titleId => {
@@ -46,10 +34,17 @@ export default angular.module('addressView.address', [
 .filter('search', () => (
   addressList,
   searchKeyword
-) => addressList.filter(address => fuzzysearch(
+) => addressList.filter(address => [
+  'street',
+  'subStreet',
+  'city',
+  'state',
+  'postalCode',
+  'country'
+].some(key => fuzzysearch(
   searchKeyword,
-  address.formatAddress.toLowerCase()
-)))
+  address[key].toLowerCase()
+))))
 .directive('addressList', addressList)
 .directive('addressItem', addressItem)
 .directive('addressItemEdit', addressItemEdit)

@@ -49,7 +49,7 @@ class AddressItemEditController {
   }
 
   update() {
-    this.updateAddress(this.address.id, this.address);
+    this.updateAddress(this.address);
 
     this.address.editing = false;
   }
