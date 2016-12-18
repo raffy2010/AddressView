@@ -6,6 +6,8 @@ var fs = require('fs');
 
 var envConfig = require('./config');
 
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+
 function hasArg(arg) {
   var regex = new RegExp('^' + ((arg.length === 2) ? ('-\\w*'+arg[1]+'\\w*') : (arg)) + '$');
   return process.argv.filter(regex.test.bind(regex)).length > 0;
@@ -33,6 +35,11 @@ var plugins = [
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
     minChunks: Infinity // (with more entries, this ensures that no other module goes into the vendor chunk)
+  }),
+  new HtmlWebpackPlugin({
+    title: 'Address View',
+    filename: 'index.html',
+    template: '../index.html'
   })
 ];
 
@@ -42,15 +49,17 @@ var output = {
 };
 
 if (NODE_ENV === 'production') {
-  output.publicPath = '/static/script/';
+  output.filename = '[name].[chunkhash].bundle.js';
 
-  plugins.push(new webpack.optimize.UglifyJsPlugin({
-    test: /app.bundle.js/i,
-    mangle: false,
-    compress: {
-      warnings: false
-    }
-  }));
+  plugins = plugins.concat([
+    new webpack.optimize.UglifyJsPlugin({
+      test: /app.bundle.js/i,
+      mangle: false,
+      compress: {
+        warnings: false
+      }
+    })
+  ]);
 }
 
 
