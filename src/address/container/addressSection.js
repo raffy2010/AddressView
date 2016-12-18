@@ -1,5 +1,7 @@
 import {addressListSelector} from '../selector';
 
+import * as addressAction  from '../action';
+
 export default function addressSection() {
   return {
     restrict: 'E',
@@ -13,11 +15,15 @@ export default function addressSection() {
 class AddressSectionController {
   constructor($scope, $ngRedux) {
     let unbind = $ngRedux.connect(
-      addressListSelector
+      addressListSelector,
+      addressAction
     )(this);
 
     $scope.$on('$destroy', () => {
       unbind();
     });
+
+    this.fetchAddress();
   }
 }
+

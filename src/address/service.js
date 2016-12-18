@@ -4,27 +4,31 @@ class AddressService {
   }
 
   fetch() {
-
+    return this.$http.get('/address')
+      .then(null, () => {
+        return [];
+      });
   }
 
-  create() {
-
+  create(addressData) {
+    return this.$http.post('/address', addressData)
+      .then(null, () => {
+        return addressData;
+      });
   }
 
-  update(activityId, activityData) {
-    return this.$http.post('/activity/modify', activityData, {
-      params: {
-        id: activityId
-      }
-    });
+  update(addressData) {
+    return this.$http.put(`/address/${addressData.id}`, addressData)
+      .then(null, () => {
+        return addressData;
+      });
   }
 
-  delete(activityId) {
-    return this.$http.post('/activity/delete', null, {
-      params: {
-        id: activityId
-      }
-    });
+  delete(addressId) {
+    return this.$http.delete(`/address/${addressId}`, null)
+      .then(null, () => {
+        return addressId;
+      });
   }
 }
 

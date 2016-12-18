@@ -2,10 +2,10 @@ import {combineReducers} from 'redux';
 import {handleActions} from 'redux-actions';
 
 import {
-  CREATE_ADDRESS, UPDATE_ADDRESS,
+  CREATE_ADDRESS,
+  UPDATE_ADDRESS,
   FETCH_ADDRESS,
-  DELETE_ADDRESS,
-  SEARCH_ADDRESS
+  DELETE_ADDRESS
 } from './action';
 
 import {
@@ -20,110 +20,24 @@ const addressList = handleActions({
     next: (state, {payload}) => [payload].concat(state)
   },
   [FETCH_ADDRESS]: {
-    next: () => {
-
-    }
+    next: (_, {payload}) => payload
   },
   [UPDATE_ADDRESS]: {
-    next: (state, {payload}) => replaceCollectionById(state, payload.id, payload)
+    next: (state, {payload}) => replaceCollectionById(
+      state,
+      payload.id,
+      payload
+    )
   },
   [DELETE_ADDRESS]: {
-    next: (state, {payload}) => dropCollectionById(state, payload)
+    next: (state, {payload}) => dropCollectionById(
+      state,
+      payload
+    )
   }
-}, [{
-  id: 1,
-  type: 1,
-  street: '301 Forest Ave',
-  subStreet: '',
-  city: 'Beijing',
-  state: 'Beijing',
-  postalCode: '100000',
-  country: 'CN',
-  formatAddress: '301 Forest Ave',
-  latlng: {
-    lat: -34.397,
-    lng: 150.644
-  }
-}, {
-  id: 2,
-  type: 1,
-  street: 'Fu An Xi Lu',
-  subStreet: '',
-  city: 'Beijing',
-  state: 'Beijing',
-  postalCode: '100000',
-  country: 'CN',
-  formatAddress: 'fu an xi lu',
-  latlng: {
-    lat: -34.397,
-    lng: 150.644
-  }
-}, {
-  id: 3,
-  type: 1,
-  street: 'Fu An Xi Lu',
-  subStreet: '',
-  city: 'Beijing',
-  state: 'Beijing',
-  postalCode: '100000',
-  country: 'CN',
-  formatAddress: 'fu an xi lu',
-  latlng: {
-    lat: -34.397,
-    lng: 150.644
-  }
-}, {
-  id: 4,
-  type: 1,
-  street: 'Fu An Xi Lu',
-  subStreet: '',
-  city: 'Beijing',
-  state: 'Beijing',
-  postalCode: '100000',
-  country: 'CN',
-  formatAddress: 'fu an xi lu',
-  latlng: {
-    lat: -34.397,
-    lng: 150.644
-  }
-}, {
-  id: 5,
-  type: 1,
-  street: 'Fu An Xi Lu',
-  subStreet: '',
-  city: 'Beijing',
-  state: 'Beijing',
-  postalCode: '100000',
-  country: 'CN',
-  formatAddress: 'fu an xi lu',
-  latlng: {
-    lat: -34.397,
-    lng: 150.644
-  }
-}, {
-  id: 6,
-  type: 1,
-  street: 'Fu An Xi Lu',
-  subStreet: '',
-  city: 'Beijing',
-  state: 'Beijing',
-  postalCode: '100000',
-  country: 'CN',
-  formatAddress: 'fu an xi lu',
-  latlng: {
-    lat: -34.397,
-    lng: 150.644
-  }
-}]);
-
-const searchKeyword = handleActions({
-  [SEARCH_ADDRESS]: {
-    next: (_, {payload}) => payload
-  }
-}, '');
+}, []);
 
 export default combineReducers({
-  addressList,
-  searchKeyword
+  addressList
 });
 
